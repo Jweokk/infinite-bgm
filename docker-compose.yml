@@ -1,0 +1,44 @@
+services:
+  bgm:
+    image: nginx:alpine
+    container_name: bgm
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8096:80"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./security-headers.conf:/etc/nginx/security-headers.conf:ro
+    depends_on:
+      - counter
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+  # 访问计数 + IP 来源统计（纯标准库）。站点本身不依赖它：服务挂了计数器隐藏，播放照常。
+  counter:
+    build: ./counter
+    container_name: bgm-counter
+    restart: unless-stopped
+    environment:
+      - BGM_DATA_DIR=/data
+      - BGM_PORT=8080
+      - BGM_TZ_OFFSET=8
+      - BGM_STATS_TOKEN=${BGM_STATS_TOKEN:?统计令牌未配置}
+    volumes:
+      - ./stats:/data
+    expose:
+      - "8080"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python3",
+          "-c",
+          "import sys,urllib.request; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=3).status == 200 else 1)",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3

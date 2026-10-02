@@ -1,0 +1,21 @@
+# --- Node / build ---
+node_modules/
+dist/
+*.log
+npm-debug.log*
+.vite/
+
+# --- Secrets & runtime state ---
+.env
+.env.*
+!.env.example
+stats/
+*.jsonl
+
+# --- Editor / OS ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+.preview-*.html

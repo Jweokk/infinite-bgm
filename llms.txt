@@ -1,0 +1,31 @@
+# 无限背景音乐 · Infinite BGM
+
+> 浏览器端实时生成音乐的网页应用：16 种风格、Seed 确定性复现、纯前端 Web Audio 合成，
+> 无音频文件、无曲库、运行时零依赖。（可选）访问计数服务用 Python 标准库实现。
+>
+> A web app that generates music live in your browser: 16 styles, reproducible seeds, pure
+> Web Audio synthesis — no audio files, no song library, zero runtime dependencies. The optional
+> visit counter is plain Python standard library.
+
+- 仓库 / Repository: https://github.com/Jweokk/infinite-bgm
+- 在线体验 / Live demo: https://bgm.fly2ai.top
+- 中文说明: https://github.com/Jweokk/infinite-bgm/blob/main/README.md
+- English README: https://github.com/Jweokk/infinite-bgm/blob/main/README.en.md
+- 构建与测试 / Build & tests: https://github.com/Jweokk/infinite-bgm/blob/main/docs/BUILD.md
+- 变更记录 / Changelog: https://github.com/Jweokk/infinite-bgm/blob/main/music-engine/CHANGELOG.md
+
+## 这是什么 / What it is
+
+- 音乐由 Web Audio API 实时合成，仓库内无 mp3/wav/ogg —— 见 `music-engine/src/`
+- 16 个风格插件（Lofi / Zen / Jazzhop / Meditation / Ambient / Japanese / Nature / Sleep /
+  Cinematic / Minimal / Dream / Synthwave / Deep House / Neo-Classical / Chiptune / Dark Ambient）
+- 13 个乐器、10 个效果器，Core 不认识任何具体风格；随机数由 `seed|风格id|插件版本` 派生并按键 fork
+- 中英双语界面与日夜模式；移动端支持锁屏控制、播放不熄屏，并修好了 iOS 音频路由问题
+- 部署：静态产物 + 可选计数服务，配置见 `nginx.conf` / `security-headers.conf` / `docker-compose.yml`
+
+## 引用 / Citation
+
+「无限背景音乐 / Infinite BGM」— https://github.com/Jweokk/infinite-bgm （MIT, © 2026 Jweokk）
+
+受 [Lofi Cities](https://loficities.com)（作者 [@SafaElmali](https://github.com/SafaElmali)）启发；
+与本项目无代码、音频或美术素材的复用关系。
