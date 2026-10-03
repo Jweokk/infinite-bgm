@@ -109,7 +109,12 @@ const TEMPLATE = `
   </div>
   <div class="chip" id="stateChip"><span class="dot"></span><span id="stateText" data-i18n="state.idle"></span></div>
   <span class="status-line" id="statusLine">--</span>
-  <span class="stats-line" id="statsLine" hidden>👁</span>
+  <div class="footer-meta">
+    <span class="stats-line" id="statsLine" hidden>👁</span>
+    <span class="sep" id="statsSep" hidden>·</span>
+    <a class="repo-link" id="repoLink" href="https://github.com/Jweokk/infinite-bgm"
+       target="_blank" rel="noopener noreferrer" title="" data-i18n-title="footer.repo">GitHub ↗</a>
+  </div>
 </footer>
 
 <div class="toasts" id="toasts"></div>
@@ -291,12 +296,15 @@ export class App {
 
   private renderStats(): void {
     const el = this.$('statsLine');
+    const sep = this.$('statsSep');
     if (!el) return;
     if (!this.counts) {
       el.hidden = true;
+      if (sep) sep.hidden = true;
       return;
     }
     el.hidden = false;
+    if (sep) sep.hidden = false;
     el.textContent = `👁 ${t(this.lang, 'stats.views', {
       views: this.counts.views.toLocaleString(),
       visitors: this.counts.visitors.toLocaleString(),

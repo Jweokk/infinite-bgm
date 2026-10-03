@@ -1,7 +1,7 @@
 {
   "name": "plugin-music-engine",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "description": "Infinite BGM / 无限背景音乐 — real-time generative music in the browser (16 styles, reproducible seeds, pure Web Audio). i18n (zh/en), light/dark theme, optional visit counter.",
   "scripts": {

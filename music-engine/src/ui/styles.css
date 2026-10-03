@@ -787,7 +787,7 @@ footer input[type='range'] {
   background: var(--hover);
 }
 
-/* ---------- footer: volume + state + status + visit counter ---------- */
+/* ---------- footer: volume + state + status, then a meta row ---------- */
 footer {
   flex-wrap: wrap;
   row-gap: 8px;
@@ -798,15 +798,37 @@ footer .vol {
 footer .chip {
   flex-shrink: 0;
 }
-.stats-line {
-  margin-left: auto;
+/* 访问统计与仓库链接单独占一行，居中放在最下面 */
+.footer-meta {
+  flex: 1 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-size: 12px;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+.stats-line {
+  font-size: 12px;
+}
+.footer-meta .sep {
+  opacity: 0.45;
+}
+.repo-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.repo-link:hover,
+.repo-link:focus-visible {
+  color: var(--text);
+  border-bottom-color: currentColor;
+}
 @media (max-width: 420px) {
-  .stats-line {
-    margin-left: 0;
+  .footer-meta {
+    gap: 6px;
+    font-size: 11px;
   }
   .title h1 {
     font-size: 16px;
